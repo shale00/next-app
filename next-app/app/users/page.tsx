@@ -20,7 +20,7 @@ const UsersPage = async () => {
     <>
       <h1>Users</h1>
       <p>{new Date().toLocaleTimeString()}</p>
-      <table>
+      <table className="table table-bordered">
         <thead>
           <tr>
             <th>Name</th>
@@ -30,8 +30,8 @@ const UsersPage = async () => {
         <tbody>
           {users.map((user) => (
             <tr key={user.id}>
-              <th>{user.name}</th>
-              <th>{user.email}</th>
+              <td>{user.name}</td>
+              <td>{user.email}</td>
             </tr>
           ))}
         </tbody>
