@@ -24,6 +24,7 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
-    "daisyui": "^3.7.4"
+    "daisyui": "^3.7.4",
+    "encoding": "^0.1.13"
   }
 }
