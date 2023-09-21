@@ -15,20 +15,10 @@ export async function POST(request: NextRequest) {
   if (!validation.success)
     return NextResponse.json(validation.error.errors, { status: 400 });
 
-  const product = await prisma.product.findUnique({
-    where: { name: body.name },
-  });
-
-  if (product)
-    return NextResponse.json(
-      { error: 'Product already exists' },
-      { status: 400 }
-    );
-
   const newProduct = await prisma.product.create({
-    data: {
+    data: { 
       name: body.name,
-      price: body.price,
+      price: body.price
     },
   });
 
