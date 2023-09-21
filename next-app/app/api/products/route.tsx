@@ -1,39 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import schema from './schema';
+import prisma from '@/prisma/client';
 
-export function GET(request: NextRequest) {
-  return NextResponse.json([
-    {
-      id: 1,
-      name: 'Milk',
-      price: 2.5,
-    },
-    {
-      id: 2,
-      name: 'Bread',
-      price: 3.5,
-    },
-    {
-      id: 3,
-      name: 'Cheese',
-      price: 2,
-    },
-    {
-      id: 4,
-      name: 'Lettuce',
-      price: 1.5,
-    },
-    {
-      id: 5,
-      name: 'Tomatoes',
-      price: 3,
-    },
-    {
-      id: 6,
-      name: 'Mayo',
-      price: 1.25,
-    },
-  ]);
+export async function GET(request: NextRequest) {
+  const products = await prisma.product.findMany();
+
+  return NextResponse.json(products);
 }
 
 export async function POST(request: NextRequest) {
@@ -43,8 +15,22 @@ export async function POST(request: NextRequest) {
   if (!validation.success)
     return NextResponse.json(validation.error.errors, { status: 400 });
 
-  return NextResponse.json(
-    { id: 10, name: body.name, price: body.price },
-    { status: 201 }
-  );
+  const product = await prisma.product.findUnique({
+    where: { name: body.name },
+  });
+
+  if (product)
+    return NextResponse.json(
+      { error: 'Product already exists' },
+      { status: 400 }
+    );
+
+  const newProduct = await prisma.product.create({
+    data: {
+      name: body.name,
+      price: body.price,
+    },
+  });
+
+  return NextResponse.json(newProduct, { status: 201 });
 }
