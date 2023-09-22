@@ -16,6 +16,9 @@ const UploadPage = () => {
       )}
       <CldUploadWidget
         uploadPreset='tpchyn21'
+        options={{
+          sources: ['local'],
+        }}
         onUpload={(result, widget) => {
           if (result.event !== 'success') return;
           const info = result.info as CloudinaryResult;
