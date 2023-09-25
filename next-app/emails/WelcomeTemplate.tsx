@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import {
   Body,
   Container,
+  Tailwind,
   Html,
   Text,
   Link,
@@ -13,15 +14,25 @@ const WelcomeTemplate = ({ name }: { name: string }) => {
   return (
     <Html>
       <Preview>Welcome aboard!</Preview>
-      <Body>
-        <Container>
-          <Text>Hello {name}</Text>
-          <Link href='www.codewithmosh.com'>www.codewithmosh.com</Link>
-        </Container>
-      </Body>
+      <Tailwind>
+        <Body className='bg-white'>
+          <Container>
+            <Text className='font-bold text-3xl'>Hello {name}</Text>
+            <Link href='www.codewithmosh.com'>www.codewithmosh.com</Link>
+          </Container>
+        </Body>
+      </Tailwind>
     </Html>
   );
 };
 
-export default WelcomeTemplate;
+// to get intellisense, annotate the object with CSSProperties
+const body: CSSProperties = {
+  background: 'fff',
+};
 
+const heading: CSSProperties = {
+  fontSize: '32px',
+};
+
+export default WelcomeTemplate;
