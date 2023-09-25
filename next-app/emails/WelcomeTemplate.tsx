@@ -8,14 +8,14 @@ import {
   Preview,
 } from '@react-email/components';
 
-// Add props to this compoenent to render content dynamically
+// Add props to this component to render content dynamically
 const WelcomeTemplate = ({ name }: { name: string }) => {
   return (
     <Html>
       <Preview>Welcome aboard!</Preview>
       <Body>
         <Container>
-          <Text>Hellow {name}</Text>
+          <Text>Hello {name}</Text>
           <Link href='www.codewithmosh.com'>www.codewithmosh.com</Link>
         </Container>
       </Body>
@@ -24,3 +24,4 @@ const WelcomeTemplate = ({ name }: { name: string }) => {
 };
 
 export default WelcomeTemplate;
+
