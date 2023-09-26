@@ -1,9 +1,19 @@
-import { Metadata } from 'next';
+'use client';
+// import { Metadata } from 'next';
+import { useState } from 'react';
+import dynamic from 'next/dynamic';
 
-export default async function Home() {
+const HeavyComponent = dynamic(
+  () => import('./components/HeavyComponent'));
+
+export default function Home() {
+  const [isVisible, setVisible] = useState(false);
+
   return (
     <main>
       <h1>Hello World</h1>
+      <button onClick={() => setVisible(true)}>Show</button>
+      {isVisible && <HeavyComponent />}
     </main>
   );
 }
@@ -14,11 +24,11 @@ export default async function Home() {
 // }
 
 // To generate metadata dyncamically (for a product):
-export async function generateMetadata(): Promise<Metadata> {
-  const product = await fetch('');
+// export async function generateMetadata(): Promise<Metadata> {
+//   const product = await fetch('');
 
-  return {
-    title: 'product.title',
-    description: 'product.description',
-  };
-}
+//   return {
+//     title: 'product.title',
+//     description: 'product.description',
+//   };
+// }
