@@ -1,12 +1,17 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Roboto} from 'next/font/google';
 import NavBar from './NavBar';
 import AuthProvider from './auth/Provider';
 import GoogleAnalyticsScript from './GoogleAnalyticsScript';
 
 
 const inter = Inter({ subsets: ['latin'] });
+
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['400', '500']
+})
 
 export const metadata: Metadata = {
   title: 'Create Next App',
